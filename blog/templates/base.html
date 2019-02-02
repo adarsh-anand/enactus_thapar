@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>BLOG</title>
+
+</head>
+<body>
+<header>
+<h1><a href="/">BLOG</a></h1>
+</header>
+
+   {% if user.is_authenticated %}
+        <p>Hi {{ user.username }}!</p>
+       <p><a href="{% url 'logout' %}">logout</a></p>
+   {% else %}
+        <p>You are not logged in.</p>
+        <a href="{% url 'login' %}">login</a>
+    {% endif %}
+
+<link rel="stylesheet" href="{% static 'css/base.css' %}"
+
+<div class="nav-right">
+<a href="{% url 'post_new' %}">+ New Blog Post</a>
+</div>
+
+<div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+</body>
+</html>
